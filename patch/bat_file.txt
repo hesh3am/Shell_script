@@ -1,0 +1,11 @@
+cd C:\Users\HESHAM\Desktop\try
+mkdir hesham
+mkdir hossam
+mkdir nada
+mkdir noha
+cd hesham
+mkdir hesh
+mkdir hoss
+mkdir nad
+mkdir noh
+cd hesh
