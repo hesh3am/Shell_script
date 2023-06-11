@@ -1,0 +1,20 @@
+minikube start
+minikube status
+minikube dashboard
+
+kubectl get deployments
+kubectl get replicas
+kubectl get pods
+kubectl get services
+kubectl get namespaces
+kubectl get secret
+kubectl get all
+kubectl get pods -o wide
+kubectl logs <pod-name>
+
+kubectl apply -f composefile.yaml
+
+kubectl create deployment k8s-webserver --image=hesh3am/k8s-webserver
+kubectl expose deployment k8s-webserver --type=NodePort --port=3000  
+kubectl scale deploy k8s-webserver --replicas=3
+mnikube service k8s-webserver

@@ -1,0 +1,17 @@
+docker ps
+docker built -t <cointainer-name> .
+docker run 8080:8080 <cointainer-name> 
+
+docker-compose up --build
+docker-compose up
+docker compose up -d
+
+
+docker build . -t  hesh3am/k8s-webserver
+docker push  hesh3am/k8s-webserver
+
+
+#DOTNET MVC
+dotnet new mvc --name hrapp --output dockerapp
+dotnet build
+
