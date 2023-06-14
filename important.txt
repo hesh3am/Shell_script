@@ -1,0 +1,1 @@
+scp   -i C:\Users\HESHAM\desktop\key\key.pem C:\users\hesham\desktop\scp\docker-compose.yaml  ubuntu@81.208.165.222:/home/ubuntu/redmine 
