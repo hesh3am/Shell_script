@@ -1,6 +1,6 @@
 docker ps
-docker built -t <cointainer-name> .
-docker run 8080:8080 <cointainer-name> 
+docker build -t <cointainer-name> .
+docker run -d -p 3002:80 --name <tag> <image-name>
 
 docker-compose up --build
 docker-compose up
