@@ -1,1 +1,3 @@
-scp   -i C:\Users\HESHAM\desktop\key\key.pem C:\users\hesham\desktop\scp\docker-compose.yaml  ubuntu@81.208.165.222:/home/ubuntu/redmine 
+scp   -i C:\Users\HESHAM\desktop\key\key.pem C:\users\hesham\desktop\scp\docker-compose.yaml  ubuntu@81.208.165.222:/home/ubuntu/redmine // copy pest to server
+ssh -i  /c/Users/HESHAM/Desktop/key/key.pem ubuntu@81.208.165.222  // connect to server with a key
+ssh -L 12345:localhost:8001 myLogin@myRemoteServer //for tunnling
