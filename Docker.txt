@@ -1,5 +1,5 @@
 docker ps
-docker build -t <cointainer-name> .
+docker build -t <Image-name> .
 docker run -d -p 3002:80 --name <tag> <image-name>
 
 docker-compose up --build
