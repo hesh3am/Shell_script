@@ -1,0 +1,19 @@
+git init
+
+
+git remote add origin https://github.com/Heshamdev3/vitrine.git
+
+
+git clone https://github.com/Heshamdev3/vitrine.git
+
+
+git checkout SBS-branch
+
+
+git add .
+
+
+git commit -m "first commit"
+
+
+git push -u origin main
