@@ -2,11 +2,12 @@ docker ps
 docker build -t <Image-name> .
 docker run -d -p 3002:80 --name <tag> <image-name>
 
+#Docker-compose
 docker-compose up --build
 docker-compose up
 docker compose up -d
 
-
+#DockerHub
 docker build . -t  hesh3am/k8s-webserver
 docker push  hesh3am/k8s-webserver
 
@@ -15,3 +16,14 @@ docker push  hesh3am/k8s-webserver
 dotnet new mvc --name hrapp --output dockerapp
 dotnet build
 
+#build_TarFile
+docker image save -o vitrinasoon.tar hesh3am/vatrinahcomingsoon
+docker image load -i nginx.tar
+
+#dockerswarm
+docker swarm ini
+docker service logs -f urjr9qs11w9c
+docker service ls
+docker stack ls
+docker stack deploy -c docker-compose.yml zisoft 
+docker stack remove zisoft 
