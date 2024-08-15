@@ -1,6 +1,11 @@
+kubectl get all  -o yaml > all-resources1.yaml
+kubectl get all --all-namespaces -o yaml > all-resources.yaml
+
 minikube start
 minikube status
+minikube image ls
 minikube dashboard
+minikube service vatrinah 
 
 kubectl get deployments
 kubectl get replicas
@@ -8,13 +13,12 @@ kubectl get pods
 kubectl get services
 kubectl get namespaces
 kubectl get secret
-kubectl get all
-kubectl get pods -o wide
+kubectl get all -o wide
 kubectl logs <pod-name>
+kubectl exec -it k8s-webserver-68d59f8886-9zbjr sh
 
-kubectl apply -f composefile.yaml
+kubectl apply -f deployment-resource.yaml
 
-kubectl create deployment k8s-webserver --image=hesh3am/k8s-webserver
-kubectl expose deployment k8s-webserver --type=NodePort --port=3000  
-kubectl scale deploy k8s-webserver --replicas=3
-mnikube service k8s-webserver
+kubectl create deployment mvc --image=hesh3am/dotnet-mvc
+kubectl expose deployment mvc --type=NodePort --port=80 
+kubectl scale deploy mvc --replicas=3
