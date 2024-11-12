@@ -1,0 +1,27 @@
+mysql -u root -p
+use zisoft;
+
+mysql -u root -p
+use zisoft
+update zisoft.settings set default_theme='default';
+delete from jobs where id > 0;
+select id,username,email,password from users;  
+update users set password='$2y$10$MkNn7E0F8eTg40AkgpZRWuPG1c.JwDAqrCL7wdC3w9AQ97o6Ql8A.' where id in (1,3);  // 6BsQieL42S@5JXC#Z1
+$2y$10$rdtjZKEGPeikbYUaoNE.4eavRw3.Wy54BC.EKgxskxKFO63j1ARZu  //  Zisoft123@
+UPDATE users SET password = '$2y$10$PVruCcIc9L5xm6DakU7SDeUczXCRJMRHeqWj9ByxkBSRv1VOeKkgS' WHERE id BETWEEN 15 AND 59;
+
+UPDATE zisoft.themes
+SET name = 'New RCC', title_en = 'Updated Default Theme Title'
+WHERE id = 17;
+
+INSERT INTO zisoft.themes (id, name, title_en)
+VALUES (17, 'bab', 'bank al blaad');
+
+insert into page_templates (title) value ('kfca');
+select * from page_templates;
+
+update zisoft.settings set default_theme='default';
+php artisan migrate:rollback --step=1
+
+
+delete from jobs where id > 0;

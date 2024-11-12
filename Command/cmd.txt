@@ -1,0 +1,56 @@
+net localgroup "Hyper-V Administrators" AzureAD\zilocal@zinad.net /add
+sudo chmod -R 777 /path/to/your/directory
+dos2unix start.sh
+
+
+
+
+sudo tar -czvf  ebank-5.2-14051.tar.gz ebank-5.2-14051   //compressd
+tar -xzvf ebank-5.2-14051.tar.gz     //extraction
+
+
+aws s3api create-bucket --bucket mohzisoftdeploy --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1  //create
+aws s3 ls  --region us-east-1                                                                                                  // show list    
+aws s3 ls s3://zitestbucket --region us-east-1                                                                                // ls
+aws s3 cp /deployment/MOH/awareness-13-8-24/ui/dist.tar.gz s3://zitestbucket/  --region eu-west-1                            // upload
+aws s3 presign s3://zitestbucket/dist.tar.gz --expires-in 99100 --region eu-west-1                                          //expose link
+aws s3 rm s3://zitestbucket/awareness-moh.tar.gz
+
+
+scp -i ziquest.pem supabase.tar.gz bitnami@3.239.168.225:/home/bitnami/ziquest
+docker inspect 0470fb6afa04 | grep "Mounts" -A 10
+
+aws route53 change-resource-record-sets --hosted-zone-id ZDNC3W5L8NVVE --change-batch file://dns-updates/make-dns.json
+aws route53 change-resource-record-sets --hosted-zone-id Z064844434BJA2IXSMJON --change-batch file://dns-updates/make-dns.json
+aws route53 change-resource-record-sets --hosted-zone-id Z064844434BJA2IXSMJON --change-batch file://dns-updates/$cust_name-dns.json
+
+docker swarm ini
+docker service logs -f urjr9qs11w9c
+docker service ls
+docker stack ls
+docker stack deploy -c docker-compose.yml autodemo
+docker stack remove zisoft
+
+docker image load -i meta.tar
+docker image save -o image.tar thenameofimage
+
+php artisan db:seed --class=init
+php artisan zisoft:license_create DEMO 2024-12-30 1000 2024-12-30 1000
+
+sudo certbot --nginx -d sdaia.crowd-security.com
+sudo certbot certonly --standalone -d sdaia.crowd-security.com -d sdaia.crowd-security.com
+sudo systemctl restart nginx
+sudo nginx -s reload
+sudo /opt/bitnami/nginx/sbin/nginx -s reload 
+
+select id , title , code , description from lessons;
+
+
+php artisan zisoft:import_lessons all update
+php artisan zisoft:import_lessons lesson_code update
+
+php artisan zisoft:export_lessons all
+php artisan zisoft:export_lessons lesson_code
+
+
+

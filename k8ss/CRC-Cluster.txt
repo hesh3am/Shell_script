@@ -1,0 +1,65 @@
+minikube mount C:/Users/HESHAM/Desktop/K-Config:/mnt   // outside the node
+docker save hesh3am/taskapp -o taskapp.tar                //  inside the node in folder /mnt
+
+https://docs.redhat.com/en/documentation/red_hat_openshift_local/2.42/html/getting_started_guide/installing#configuring_usage_data_collection
+https://console.redhat.com/openshift/create/local
+
+/////////////////////////////////////////////////////////////////////
+sudo apt update
+sudo apt upgrade
+sudo apt install qemu-kvm libvirt-daemon libvirt-daemon-system network-manager
+sudo apt-get install qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker  //not working
+sudo apt-get install qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils cpu-checker
+sudo systemctl enable --now libvirtd
+sudo usermod -aG libvirt $(whoami)
+wget 'https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz'
+sudo apt install cpu-checker
+kvm-ok
+tar xvf crc-linux-amd64.tar.xz
+sudo cp crc-linux-2.43.0-amd64/crc /usr/local/bin/
+crc setup
+nano pull-secret.txt {"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfYjYzNjFjYzZiOGRiNDg5MDllNDQyYjI0N2Q5YmMwOWM6RzRFTk5FSDRZOUM0VDhGV0xQM0M4MUxWSFZITkhMTUtVQkVMWVkzWFY0RTdWUUJCMVgyNFUyRzdNNE02MFpCRg==","email":"heshamdev3@gmail.com"},"quay.io":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfYjYzNjFjYzZiOGRiNDg5MDllNDQyYjI0N2Q5YmMwOWM6RzRFTk5FSDRZOUM0VDhGV0xQM0M4MUxWSFZITkhMTUtVQkVMWVkzWFY0RTdWUUJCMVgyNFUyRzdNNE02MFpCRg==","email":"heshamdev3@gmail.com"},"registry.connect.redhat.com":{"auth":"fHVoYy1wb29sLTAwYWVlNjdkLWI0N2ItNGZjMi05Y2YzLTkwMDY4MTg4MDFkOTpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmxObVJsTWprd05HSmlPVGswWVdFd09XUTROemt4WmpFMFlqRTJOV0V6TWlKOS5HVlNEZnVXZ3I3SERvMDFPRk5kVjViUHhHbTFudTVHbGw5T0V4SEFLdHJtdEZ6dXFUN24tOGhFMnp1cEtBOFREbGlxbVZvVV9MS2dHUm9lZHFSQmdLcU9HSnljZW5mcWc2ZjFrWFI0YjhlQUQ0LWhVejlBZUFia3czS3V2Z20tODZGbUt0dVF6X3lZV2RkVEdfcW9mVGR6SXNWQkphWW1kM3ZJSWhwcVdLQS1VTGc2V3YxeFdXWUdRRDFfUklHZzVrZ2tOdmJVcXVLYmkzb0ZsNFpvcjEwSm93TmJXaV8zUFpmdVZ6M0RxUWFieU9FMzVvdEZZLWF4NGlQQkRtS3JqYzZIYWgtM3FoYk5tTDg1WmRxb0Q3dmlHT1VNZ2ppQ0Nnb1dlSDQ1YlN5VnE3N1lkU2gwYkxYSXd4ZlRzWV8xbUN4YnNZLVZEUldFVllpVk1LMTBqYmhhYUw3OGZoZkVxV0hGQVlHVGdwTTVjSlFCb016dDQ5TnZwQVJ4eUtKWlBTUXlfQzdaTTBDSWc0d0RmMVNzUzJyaENKbVRaZUxmTmtNaWNreFV4a3kzWTNsMmlsZkhYeF9OcEFuNFdSTjk3b2RhVW1mUGRqR0lDdGxRYUp6VG8tYXBIakw2ZzVpb3N3Ym83MGtBaWJDWHN5bVo1Z0tKMzVVNWhQS1NJUVVKc1UxWTdScWY5S1ZrNlh4Ums3YjZZcHhMZUloUy1JNVZMMHFkUWRuQms3bDZMMmJDcEZBWl85YmxIUjR2N2lDVjBJUXpuNEtidmwtOVNBMi14U1Z5SzUtZlYtR0NyaVNoamRVZ2VDbzBDODBTV21OZ2E4Z1BUSzZIWWlXWElIYWRkR3ljVEFSQUdrY2RPRVd5VWhPX0wzRzlFMEM4ZnpRVmpYY2t4MDhJQWtfMA==","email":"heshamdev3@gmail.com"},"registry.redhat.io":{"auth":"fHVoYy1wb29sLTAwYWVlNjdkLWI0N2ItNGZjMi05Y2YzLTkwMDY4MTg4MDFkOTpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmxObVJsTWprd05HSmlPVGswWVdFd09XUTROemt4WmpFMFlqRTJOV0V6TWlKOS5HVlNEZnVXZ3I3SERvMDFPRk5kVjViUHhHbTFudTVHbGw5T0V4SEFLdHJtdEZ6dXFUN24tOGhFMnp1cEtBOFREbGlxbVZvVV9MS2dHUm9lZHFSQmdLcU9HSnljZW5mcWc2ZjFrWFI0YjhlQUQ0LWhVejlBZUFia3czS3V2Z20tODZGbUt0dVF6X3lZV2RkVEdfcW9mVGR6SXNWQkphWW1kM3ZJSWhwcVdLQS1VTGc2V3YxeFdXWUdRRDFfUklHZzVrZ2tOdmJVcXVLYmkzb0ZsNFpvcjEwSm93TmJXaV8zUFpmdVZ6M0RxUWFieU9FMzVvdEZZLWF4NGlQQkRtS3JqYzZIYWgtM3FoYk5tTDg1WmRxb0Q3dmlHT1VNZ2ppQ0Nnb1dlSDQ1YlN5VnE3N1lkU2gwYkxYSXd4ZlRzWV8xbUN4YnNZLVZEUldFVllpVk1LMTBqYmhhYUw3OGZoZkVxV0hGQVlHVGdwTTVjSlFCb016dDQ5TnZwQVJ4eUtKWlBTUXlfQzdaTTBDSWc0d0RmMVNzUzJyaENKbVRaZUxmTmtNaWNreFV4a3kzWTNsMmlsZkhYeF9OcEFuNFdSTjk3b2RhVW1mUGRqR0lDdGxRYUp6VG8tYXBIakw2ZzVpb3N3Ym83MGtBaWJDWHN5bVo1Z0tKMzVVNWhQS1NJUVVKc1UxWTdScWY5S1ZrNlh4Ums3YjZZcHhMZUloUy1JNVZMMHFkUWRuQms3bDZMMmJDcEZBWl85YmxIUjR2N2lDVjBJUXpuNEtidmwtOVNBMi14U1Z5SzUtZlYtR0NyaVNoamRVZ2VDbzBDODBTV21OZ2E4Z1BUSzZIWWlXWElIYWRkR3ljVEFSQUdrY2RPRVd5VWhPX0wzRzlFMEM4ZnpRVmpYY2t4MDhJQWtfMA==","email":"heshamdev3@gmail.com"}}}
+crc config set pull-secret-file pull-secret.txt
+crc start
+only 4.023GB of memory found (11.27GB required)
+
+
+
+///////////////////////////////////////////////////////////////
+
+sudo apt install -y bind9-utils
+sudo apt install -y sosreport
+sudo apt install -y acct
+
+# Update the package database and install prerequisites
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+# Add Docker’s official GPG key and repository
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+# Install Docker
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+# Enable and start Docker
+sudo systemctl enable docker
+sudo systemctl start docker
+
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/openshift-client-linux.tar.gz
+tar -xvf openshift-client-linux.tar.gz
+sudo mv oc kubectl /usr/local/bin/
+
+oc version
+
+wget https://github.com/okd-project/okd/releases/download/4.15.0-0.okd-2024-03-10-010116/openshift-install-linux-4.15.0-0.okd-2024-03-10-010116.tar.gz
+tar -xvf openshift-install-linux-4.15.0-0.okd-2024-03-10-010116.tar.gz
+sudo mv openshift-install /usr/local/bin/
+
+openshift-install version
+
+mkdir okd-install
+cd okd-install
+openshift-install create install-config --dir=.   or openshift-install create cluster --dir=okd-install
+
+
+
+

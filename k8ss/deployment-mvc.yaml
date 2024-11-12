@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mvc
+  template:
+    metadata:
+      labels:
+        app: mvc
+    spec:
+      containers:
+      - name: mvc
+        image: hesh3am/dotnet-mvc
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mvc
+spec:
+  selector:
+    app: mvc
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort

@@ -1,0 +1,48 @@
+#ssh -p 47351 root@51.210.142.52
+#make a backup folder
+mkdir awerness-22-2-2024
+
+git pull https://github.com/zinad-it/awareness.git master
+
+make install
+
+#database,lessons,videos,lessons_files,app
+cp -r ../awareness-22-02-2024/storage/lesson_files/ storage/
+
+#copy help
+cp -r public/help ../awareness/public
+
+docker service update gh%f$hH%2d
+
+[9:50 AM] Ayman Elzohiery // make a cert from pfx
+openssl pkcs12 -in wildcard_kfca_com_sa.pfx -nocerts -out kfca-com-sa.key
+openssl pkcs12 -in wildcard_kfca_com_sa.pfx  -clcerts -nokeys -out kfca-com-sa.crt
+openssl rsa -in kfca-com-sa.key -out kfca-com-sa-de.key
+
+sed -i 's/APP_ENV=local/APP_ENV=Production/g' .env
+sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' .env
+rm -rf .gitmodules
+rm -rf .git
+rm -rf .githook
+rm -rf .githattributes
+rm -rf .gitignorerm -rf ./git*
+rm -rf ./public/portal/dist/demo10
+rm -rf ./public/portal/dist/demo11
+rm -rf ./public/portal/dist/demo12
+rm -rf ./public/portal/dist/demo2
+rm -rf ./public/portal/dist/demo3
+rm -rf ./public/portal/dist/demo4
+rm -rf ./public/portal/dist/demo5
+rm -rf ./public/portal/dist/demo6
+rm -rf ./public/portal/dist/demo7
+rm -rf ./public/portal/dist/demo8
+rm -rf ./public/portal/docs/
+rm -rf ./public/portal/tools/
+rm -rf ./public/portal/src
+rm -rf  ./ui/node_modules
+rm -rf  ./ui/src
+rm -rf  ./ui/e2e
+rm -rf  ./node_modules
+rm -rf  ./contribution
+rm -rf  ./docs
+rm -rf  ./e2e

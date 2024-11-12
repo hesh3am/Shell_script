@@ -1,0 +1,14 @@
+sudo cp oc kubectl /usr/local/bin/
+oc get pods
+oc get namespaces
+oc adm policy add-scc-to-user anyuid -z vault-sa -n softpos
+oc login --token=sha256~wRTdjJeSkbg-D68yw9c-DGMpztk_DSxNagHt4DNPHaM --server=https://api.crc.testing:6443
+oc login -u developer https://api.crc.testing:6443
+oc get namespaces
+
+
+docker login -u kubeadmin -p $(./oc whoami -t) default-route-openshift-image-registry.apps-crc.testing --tls-verify=0
+docker login -u kubeadmin -p $(./oc whoami -t) default-route-openshift-image-registry.apps-crc.testing 
+docker tag security-service:1.16.85-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/security-service:1.16.85-SNAPSHOT
+docker push default-route-openshift-image-registry.apps-crc.testing/softpos/rabbitmq:3.10-management-alpine
+docker push default-route-openshift-image-registry.apps-crc.testing/softpos/key-management-service:1.16.85-SNAPSHOT

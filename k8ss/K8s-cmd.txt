@@ -1,0 +1,43 @@
+kubectl get all  -o yaml > all-resources1.yaml
+kubectl get all --all-namespaces -o yaml > all-resources.yaml
+
+minikube start
+minikube status
+minikube image ls
+minikube dashboard
+minikube service vatrinah 
+
+kubectl get deployments
+kubectl get replicas
+kubectl get pods
+kubectl get services
+kubectl get namespaces
+kubectl get secret
+kubectl get all -o wide
+kubectl logs <pod-name>
+kubectl exec -it k8s-webserver-68d59f8886-9zbjr sh
+kubectl describe deploy vatrinah
+
+kubectl apply -f deployment-resource.yaml
+
+kubectl create deployment mvc --image=hesh3am/dotnet-mvc
+kubectl expose deployment mvc --type=NodePort --port=80 
+kubectl scale deploy mvc --replicas=3
+
+
+kubectl api-resources
+
+kubectl port-forward service/vatrinah 8090:80        //tunnnling
+
+kubectl create configmap keycloak-imports --from-file=./resources/imports/keycloak_imports   //create configmap from folders/files
+kubectl create configmap api-key --from-file=./resources/TEMP_AUTH_API_KEY.txt              //create configmap from file
+ 
+kubectl get configmap api-key -o yaml > api-key.yaml   //genrate a yaml file from configmap
+
+kubectl create configmap my-config --from-env-file=.env     // transform the .env to configmap
+
+
+kubectl logs jboss-keycloak-server-867d74b6f5-mt2wt -f
+kubectl delete deployments --all
+kubectl delete service --all
+kubectl exec -it <pod-name> -- env

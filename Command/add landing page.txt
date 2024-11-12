@@ -1,0 +1,8 @@
+chmod -R 777 /var/www/html/public/execute/page
+mkdir "kfca phishing" && chmod -R 777 *
+
+mysql -p -u root
+show databases;
+use zisoft;
+insert into page_templates (title) value ('NEW_SCFHS');
+select * from page_templates;

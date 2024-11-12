@@ -1,0 +1,36 @@
+sudo apt update   // updated the server
+sudo apt upgrade // upgrade the server
+
+lscpu         // check CPU
+free -h      // check RAM
+df -h       // check deskspace
+
+wget  https://zi-ams.s3.eu-west-1.amazonaws.com/awareness-5.2.7.tar.gz  // download sourceCode package
+wget https://zi-ams.s3.eu-west-1.amazonaws.com/images5.x.x.tar.gz    // download docker images
+
+tar -xzvf awareness5.2.2.tar.gz  // uncompressed package
+tar -xzvf images5.x.x.tar.gz    // uncompressed images
+
+for i in *; do docker load -i $i;done;
+docker image load -i worker.tar   // import images
+
+sudo apt install nginx-core    // setup nginx
+sudo apt  install docker  // setup docker
+
+docker swarm init            // setup docker stack
+
+sudo usermod -aG docker $USER  // set user to docker group then restart the session
+
+
+make install  // build the package files
+
+docker stack deploy -c stack-prod.yml zisoft // run the stack
+
+https://zitestbucket.s3.eu-west-1.amazonaws.com/awareness-5.2.7.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3P5KOMUPUFDQUSEU%2F20240908%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240908T214820Z&X-Amz-Expires=99100&X-Amz-SignedHeaders=host&X-Amz-Signature=3e93dcf1e33fe6ab96a83ba4db02ab618ae5c67c6c25a442a0e7e01700ab9fc5
+
+sudo chmod -R 777 public/fonts  && sudo chmod -R 777 public/execute && sudo chmod -R 777 storage/logs && sudo chmod -R 777 storage/framework/ && sudo chmod -R 777 storage/fonts/ && sudo chmod -R 777 storage/app && sudo chmod -R 777 vendor/ezyang/ && sudo chmod -R 777 metabase/ && sudo chmod -R 777 storage/videos/
+
+
+https://zitestbucket.s3.eu-west-1.amazonaws.com/crt.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3P5KOMUPUFDQUSEU%2F20240909%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240909T065153Z&X-Amz-Expires=99100&X-Amz-SignedHeaders=host&X-Amz-Signature=abb5f34a421d8a3e85926c3b15dd70f39f1b115e235552e91d3109fc2b2a3ba1
+
+php artisan zisoft:license_create DEMO 2024-12-15 3400 2024-12-15 3400

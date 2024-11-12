@@ -1,0 +1,27 @@
+
+git clone
+sudo chmod -R 777 /home/demo-creation/files
+docker-compose up -d
+docker-compose down
+
+mv .example.env .env
+edit .env from 172.0..0.1 to db
+
+docker-compose exec app composer install 
+docker-compose exec app composer update
+
+docker-compose exec app php artisan key:generate
+
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan migrate:fresh --seed
+docker exec b055aee8a2fd php artisan migrate:fresh --seed
+
+
+docker exec -it {{ID}} bash
+vi :set ff=unix
+chmod -R  777 /var/www/storage
+chmod 777 /var/www/storage/logs/laravel.log
+chmod +x deploy.sh
+
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan cache:clear

@@ -1,0 +1,7 @@
+php artisan db:seed --class=OAuthOutlookPluginServiceSeeder
+
+php artisan db:seed --class=AnalyzerSetting
+
+SkyLine#2004   
+
+outlook.office365.com/owa/?path=/options/manageapps
