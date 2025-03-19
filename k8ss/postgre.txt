@@ -1,0 +1,28 @@
+I will provide you with a docker-compose file need t be converted to k8s config yml file i need the deplyment and service in one file after convert
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+sudo apt update
+sudo apt upgrade
+sudo apt  install docker.io
+sudo apt-get install docker-compose-plugin
+sudo usermod -aG docker $USER
+
+git clone https://github.com/sbs-ksa/softpos-backend-microservices.git
+git checkout Google_API_Attestation
+
+
+chmod +x build-images.sh
+sudo apt install openjdk-11-jdk -y
+
+for i in *; do docker load -i $i;done;
+docker image load -i worker.tar   // import images
+docker save hesh3am/taskapp -o taskapp.tar                //  inside the node in folder /mnt
+minikube mount C:/Users/HESHAM/Desktop/K-Config:/mnt       // mount outside the node
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+wget "https://download.oracle.com/otn-pub/otn_software/jdbc/236/ojdbc11-full.tar.gz"
+git clone https://github.com/sbs-ksa/softpos-backend-microservices.git
+cd softpos-backend-microservices/
+git checkout Oracle_DB_Testing
+
+sudo apt install maven
+mvn install:install-file -Dfile=ojdbc11.jar -DgroupId=com.oracle.database.jdbc -DartifactId=ojdbc11 -Dversion=23.0.0.0 -Dpackaging=jar

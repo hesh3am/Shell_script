@@ -32,12 +32,14 @@ kubectl port-forward service/vatrinah 8090:80        //tunnnling
 kubectl create configmap keycloak-imports --from-file=./resources/imports/keycloak_imports   //create configmap from folders/files
 kubectl create configmap api-key --from-file=./resources/TEMP_AUTH_API_KEY.txt              //create configmap from file
  
-kubectl get configmap api-key -o yaml > api-key.yaml   //genrate a yaml file from configmap
+kubectl get configmap my-config -o yaml > my-configmap.yaml   //genrate a yaml file from configmap
 
 kubectl create configmap my-config --from-env-file=.env     // transform the .env to configmap
 
-
+sed -i 's/1.16.174-SNAPSHOT/1.16.159-SNAPSHOT/g'
 kubectl logs jboss-keycloak-server-867d74b6f5-mt2wt -f
 kubectl delete deployments --all
 kubectl delete service --all
+kubectl delete pvc --all
+kubectl adm prune images
 kubectl exec -it <pod-name> -- env

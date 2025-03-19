@@ -1,0 +1,71 @@
+istioctl install --set profile=demo -y
+kubectl label namespace default istio-injection=enabled --overwrite
+kubectl get namespace default --show-labels
+
+kubectl apply -f kubernetes-manifests.yaml
+kubectl apply -f mtls-permissive.yaml
+kubectl get crds | grep peer
+kubectl get peerauthentications --all-namespaces
+kubectl describe peerauthentication default -n default
+istioctl version
+istioctl proxy-status
+kubectl get pods -n default -o jsonpath="{.items[*].spec.containers[*].name}"
+kubectl logs adservice-78b57fcf87-pbp55 -n default -c istio-proxy
+istioctl authn tls-check adservice-78b57fcf87-pbp55.default
+istioctl experimental authn tls-check adservice-78b57fcf87-pbp55.default 
+istioctl proxy-config ssl adservice-78b57fcf87-pbp55.default
+kubectl port-forward -n istio-system service/kiali 20001:20001
+
+//////openshift
+oc adm policy add-scc-to-user anyuid -z istio-ingressgateway-service-account -n istio-system
+oc adm policy add-scc-to-user privileged -z istio-ingressgateway-service-account -n istio-system
+oc delete pod -n istio-system --all
+oc rollout restart deployment/istio-ingressgateway -n istio-system
+oc get pods -n istio-system 
+oc get deployments -n istio-system
+oc get svc -n istio-system
+
+
+kubectl get svc -n default frontend
+kubectl get svc -n istio-system istio-ingressgateway
+kubectl logs -l istio=ingressgateway -n istio-system --tail=50
+kubectl delete pod -l istio=ingressgateway -n istio-system
+
+
+kubectl get virtualservice -A
+kubectl get gateway -A
+istioctl analyze
+
+
+kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "NodePort"}}'
+sed -i 's/2.1.70-SNAPSHOT/2.1.116-SNAPSHOT/g' *.yaml
+kind load docker-image mada-tms2-mock-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image tms-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image key-management-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image softpos-api-gateway:2.1.116-SNAPSHOT -n softpos
+kind load docker-image attestation-monitoring-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image receipt-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image notification-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image default-email-notification-consumer:2.1.116-SNAPSHOT -n softpos
+kind load docker-image softpos-core-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image transaction-service:2.1.116-SNAPSHOT -n softpos
+kind load docker-image security-service:2.1.116-SNAPSHOT -n softpos
+
+
+
+minikube image load softpos-core-service:2.2.5-SNAPSHOT
+minikube image load softpos-api-gateway:2.2.5-SNAPSHOT
+minikube image load notification-service:2.2.5-SNAPSHOT
+minikube image load key-management-service:2.2.5-SNAPSHOT
+minikube image load attestation-monitoring-service:2.2.5-SNAPSHOT
+minikube image load default-email-notification-consumer:2.2.5-SNAPSHOT
+minikube image load mada-tms2-mock-service:2.2.5-SNAPSHOT
+minikube image load receipt-service:2.2.5-SNAPSHOT
+minikube image load security-service:2.2.5-SNAPSHOT
+minikube image load transaction-service:2.2.5-SNAPSHOT
+minikube image load tms-service:2.2.5-SNAPSHOT
+minikube image load super-admin:latest
+minikube image load merchant:latest
+
+
+

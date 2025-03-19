@@ -6,9 +6,38 @@ oc login --token=sha256~wRTdjJeSkbg-D68yw9c-DGMpztk_DSxNagHt4DNPHaM --server=htt
 oc login -u developer https://api.crc.testing:6443
 oc get namespaces
 
+oc delete deployments --all
+oc delete service --all
+oc delete pvc --all
 
-docker login -u kubeadmin -p $(./oc whoami -t) default-route-openshift-image-registry.apps-crc.testing --tls-verify=0
-docker login -u kubeadmin -p $(./oc whoami -t) default-route-openshift-image-registry.apps-crc.testing 
-docker tag security-service:1.16.85-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/security-service:1.16.85-SNAPSHOT
-docker push default-route-openshift-image-registry.apps-crc.testing/softpos/rabbitmq:3.10-management-alpine
-docker push default-route-openshift-image-registry.apps-crc.testing/softpos/key-management-service:1.16.85-SNAPSHOT
+namespace: softpos-sbs-sit
+
+oc port-forward softpos-api-gateway-55f7c98c66-rcwv8 8082:8082
+
+docker login quay.apps.ocphubho.neoleap.com.sa -u svcocpldap -p 5UCLy8TSfR
+docker tag super-admin:latest quay.apps.ocphubho.neoleap.com.sa/ocpuat_softpos-sbs-sit/super-admin:latest
+docker push quay.apps.ocphubho.neoleap.com.sa/ocpuat_softpos-sbs-sit/rabbitmq:3.10-management-alpine
+ 
+
+docker login -u kubeadmin -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing
+docker push default-route-openshift-image-registry.apps-crc.testing/softpos/receipt-service:1.16.174-SNAPSHOT
+
+docker tag security-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/security-service:1.16.174-SNAPSHOT
+docker tag mada-tms2-mock-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/mada-tms2-mock-service:1.16.174-SNAPSHOT
+docker tag tms-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/tms-service:1.16.174-SNAPSHOT
+docker tag key-management-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/key-management-service:1.16.174-SNAPSHOT
+docker tag softpos-api-gateway:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/softpos-api-gateway:1.16.174-SNAPSHOT
+docker tag attestation-monitoring-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/attestation-monitoring-service:1.16.174-SNAPSHOT
+docker tag receipt-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/receipt-service:1.16.174-SNAPSHOT
+docker tag notification-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/notification-service:1.16.174-SNAPSHOT
+docker tag default-email-notification-consumer:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/default-email-notification-consumer:1.16.174-SNAPSHOT
+docker tag softpos-core-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/softpos-core-service:1.16.174-SNAPSHOT
+docker tag transaction-service:1.16.174-SNAPSHOT default-route-openshift-image-registry.apps-crc.testing/softpos/transaction-service:1.16.174-SNAPSHOT
+
+
+oc get pods --field-selector=status.phase=Failed -o json | jq -r '.items[] | select(.status.reason=="Evicted") | .metadata.name' | xargs oc delete pod
+oc get pods --field-selector=status.phase=Succeeded -o json | jq -r '.items[] | .metadata.name' | xargs oc delete pod
+
+
+
+

@@ -1,0 +1,6 @@
+sudo mkdir -p /usr/lib/jvm
+sudo mv jdk-21.0.5 /usr/lib/jvm/ 
+cd /usr/lib/jvm/ 
+ls
+sudo nano /etc/environment
+JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"

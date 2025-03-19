@@ -1,0 +1,14 @@
+
+sudo chmod -R o+r /var/log
+sudo chown -R 1000:1000 /var/log
+
+sudo chgrp -R 1 /var/log
+sudo chmod -R g+rX /var/log
+
+sudo mkdir -p /var/log/promtail
+sudo chown 1:1 /var/log/promtail
+
+sudo semanage fcontext -a -t container_file_t '/var/log(/.*)?'
+sudo restorecon -Rv /var/log
+
+oc adm policy add-scc-to-user privileged -z default
